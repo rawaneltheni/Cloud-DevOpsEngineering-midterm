@@ -1,0 +1,33 @@
+services:
+
+  redis:
+    image: redis:7
+    container_name: redis_server
+
+    volumes:
+      - redis_data:/data
+
+    command: redis-server --appendonly yes
+
+  app1:
+    build: ./app1
+    container_name: message_collector
+
+    ports:
+      - "5000:5000"
+
+    depends_on:
+      - redis
+
+  app2:
+    build: ./app2
+    container_name: dashboard_app
+
+    ports:
+      - "5001:5001"
+
+    depends_on:
+      - redis
+
+volumes:
+  redis_data:

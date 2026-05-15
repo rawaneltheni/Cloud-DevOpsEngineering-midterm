@@ -20,10 +20,7 @@ def home():
         return redirect(url_for('home'))
 
     # Increment visit count
-    r.incr('visit_count')
-
-    message_count = r.llen('messages')
-    visit_count = r.get('visit_count') or 0
+    r.incr('visit_count')   
     return render_template('message_collector.html')
 
 

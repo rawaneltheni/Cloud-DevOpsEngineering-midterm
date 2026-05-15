@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="dashboard">
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Redis Stats</p>
+                <h1>Dashboard</h1>
+            </div>
+            <a class="refresh-link" href="/">Refresh</a>
+        </header>
+
+        <section class="stats-grid" aria-label="Application statistics">
+            <article class="stat-card">
+                <p class="stat-label">Total Messages</p>
+                <p class="stat-value">{{ message_count }}</p>
+            </article>
+
+            <article class="stat-card stat-card-accent">
+                <p class="stat-label">Total Visits</p>
+                <p class="stat-value">{{ visit_count }}</p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

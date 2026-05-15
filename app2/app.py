@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import redis
 
 app = Flask(__name__)
@@ -9,16 +9,13 @@ r = redis.Redis(host='redis', port=6379, decode_responses=True)
 def dashboard():
 
     message_count = r.llen('messages')
-    visit_count = r.get('visit_count')
+    visit_count = r.get('visit_count') or 0
 
-    if visit_count is None:
-        visit_count = 0
-
-    return f"""
-        <h1>Dashboard</h1>
-        <p>Total Messages: {message_count}</p>
-        <p>Total Visits: {visit_count}</p>
-    """
+    return render_template(
+        'dashboard.html',
+        message_count=message_count,
+        visit_count=visit_count
+    )
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=8001)

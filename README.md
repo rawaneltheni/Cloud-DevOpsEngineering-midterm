@@ -12,25 +12,6 @@ This project is a small multi-container Flask and Redis application built for a 
 | student1 | `app1` - Message Collector |
 | stident2 | `app2` - Dashboard |
 
-## Project Structure
-
-```text
-.
-├── app1/
-│   ├── app.py
-│   ├── Dockerfile
-│   └── requirements.txt
-├── app2/
-│   ├── app.py
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   ├── static/
-│   │   └── style.css
-│   └── templates/
-│       └── dashboard.html
-├── docker-compose.yaml
-└── README.md
-```
 
 ## Services
 

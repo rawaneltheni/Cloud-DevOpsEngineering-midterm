@@ -8,26 +8,33 @@ services:
       - redis_data:/data
 
     command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 1s
+      retries: 3
 
   app1:
     build: ./app1
     container_name: message_collector
 
     ports:
-      - "5000:5000"
+      - "127.0.0.1:5000:5000"
 
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
 
   app2:
     build: ./app2
     container_name: dashboard_app
 
     ports:
-      - "5001:5001"
+      - "127.0.0.1:5001:5001"
 
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
 
 volumes:
   redis_data:

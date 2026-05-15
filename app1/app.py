@@ -24,7 +24,7 @@ def home():
 
     message_count = r.llen('messages')
     visit_count = r.get('visit_count') or 0
-    return render_template('message_collector.html', message_count=message_count, visit_count=visit_count)
+    return render_template('message_collector.html')
 
 
 if __name__ == '__main__':
